@@ -104,6 +104,8 @@ def parse_command_line(args):
                 options.cplus = 1
             elif option == "--embed":
                 Options.embed = pop_value("main")
+            elif option == "--set-python-home":
+                Options.set_python_home = True
             elif option.startswith("-I"):
                 options.include_path.append(get_param(option))
             elif option == "--include-dir":

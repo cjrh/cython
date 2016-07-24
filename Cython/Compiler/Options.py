@@ -79,6 +79,15 @@ lookup_module_cpdef = False
 # This will provide a method which initialises the interpreter and
 # executes the body of this module.
 embed = None
+# For making a redistributable, embedded build. The additional requirements
+# are:
+# - statically link the Python library against the C file containing main
+# - copy the standard library "Lib/" folder into the same dir as the binary
+# - empty or customize "./Lib/PythonX.X/site.py" (CPython default requires "build/")
+# If you do the above 3 steps you can make a redistributable dir (EXE + Lib/),
+# but Python still complains that `prefix` and `exec_prefix` have not been
+# set. By setting PYTHONHOME to "", this message is no longer displayed.
+set_python_home = None
 
 # In previous iterations of Cython, globals() gave the first non-Cython module
 # globals in the call stack.  Sage relies on this behavior for variable injection.

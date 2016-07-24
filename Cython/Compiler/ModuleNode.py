@@ -2410,13 +2410,18 @@ class ModuleNode(Nodes.Node, Nodes.BlockNode):
             wmain = "wmain"
         else:
             wmain = Options.embed
+        if Options.set_python_home:
+            python_home = 'Py_SetPythonHome("");'
+        else:
+            python_home = ''
         main_method = UtilityCode.load_cached("MainFunction", "Embed.c")
         code.globalstate.use_utility_code(
             main_method.specialize(
                 module_name=env.module_name,
                 module_is_main=module_is_main,
                 main_method=Options.embed,
-                wmain_method=wmain))
+                wmain_method=wmain,
+                python_home=python_home))
 
     def generate_pymoduledef_struct(self, env, code):
         if env.doc:

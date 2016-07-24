@@ -24,6 +24,7 @@ static int __Pyx_main(int argc, wchar_t **argv) {
 #endif
     if (argc && argv)
         Py_SetProgramName(argv[0]);
+    %(python_home)s
     Py_Initialize();
     if (argc && argv)
         PySys_SetArgv(argc, argv);
